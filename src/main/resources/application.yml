@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: cache-demo
+  profiles:
+    active: dev
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, env
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+infinispan:
+  remote:
+    enabled: false
+  embedded:
+    enabled: true
+    clusterName: local
+    configXml: cache-embedded.xml
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+infinispan:
+  embedded:
+    enabled: false
+  remote:
+    enabled: true
+    marshaller: org.infinispan.commons.marshall.JavaSerializationMarshaller
+    statistics: true
+    client-intelligence: BASIC
+    server-list: cachedemo-infinispan:11222
+    java-serial-allowlist: com.lemberski.cachedemo.Task
+    use-auth: false

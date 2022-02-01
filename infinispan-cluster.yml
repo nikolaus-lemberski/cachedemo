@@ -1,0 +1,16 @@
+apiVersion: infinispan.org/v1
+kind: Infinispan
+metadata:
+  name: cachedemo-infinispan
+  namespace: cachedemo
+spec:
+  expose:
+    type: Route
+  security:
+    endpointEncryption:
+      type: None
+      clientCert: None
+    endpointAuthentication: false
+  service:
+    type: Cache
+  replicas: 1

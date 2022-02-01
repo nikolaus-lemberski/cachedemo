@@ -1,0 +1,5 @@
+<infinispan>
+    <cache-container>
+        <local-cache name="tasks" simple-cache="true" />
+    </cache-container>
+</infinispan>
