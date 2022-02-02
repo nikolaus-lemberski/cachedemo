@@ -1,13 +1,13 @@
 package com.lemberski.cachedemo;
 
 import static java.lang.String.format;
+import static java.util.stream.Collectors.toList;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import javax.annotation.PostConstruct;
@@ -31,17 +31,17 @@ public class TaskService {
         });
     }
 
+    public Task create(String description) {
+        Task task = new Task(description);
+        tasks.put(task.getId(), task);
+        return task;
+    }
+
     @Cacheable(key = "#id", unless = "#result==null")
     public Task get(UUID id) {
         sleep(10);
 
         return tasks.get(id);
-    }
-
-    public Task create(String description) {
-        Task task = new Task(description);
-        tasks.put(task.getId(), task);
-        return task;
     }
 
     @CacheEvict(key = "#id")
@@ -54,7 +54,7 @@ public class TaskService {
                 .values()
                 .stream()
                 .sorted((t1, t2) -> t1.getDescription().compareTo(t2.getDescription()))
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     private void sleep(int seconds) {
