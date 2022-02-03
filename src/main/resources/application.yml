@@ -14,19 +14,6 @@ management:
 spring:
   config:
     activate:
-      on-profile: dev
-infinispan:
-  remote:
-    enabled: false
-  embedded:
-    enabled: true
-    clusterName: local
-    configXml: cache-embedded.xml
-
----
-spring:
-  config:
-    activate:
       on-profile: prod
 infinispan:
   embedded:

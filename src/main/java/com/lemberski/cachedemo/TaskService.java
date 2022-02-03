@@ -18,7 +18,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
-@CacheConfig(cacheNames = { Cache.TASKS_CACHE })
+@CacheConfig(cacheNames = { App.TASKS_CACHE })
 public class TaskService {
 
     private final Map<UUID, Task> tasks = new HashMap<>();
