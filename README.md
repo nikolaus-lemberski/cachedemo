@@ -18,6 +18,8 @@ Spring Boot Actuator gives info about health and environment.
 
 ## Install on OpenShift
 
+You can test on Red Hat Cloud Services or CodeReady Containers locally.
+
 1. Create namespace "cache-demo"
 2. Install Red Hat Data Grid operator in the namespace
 3. Create Infinispan cluster via the provided file (infinispan-cluster.yml). No authentication and no encryption here - demo use only!!
