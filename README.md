@@ -1,6 +1,6 @@
 # Cache Demo
 
-Simple Spring Boot project with Infinispan in-memory Data Grid. Used as embedded cache for local development, remote cache for _"production"_.
+Simple Spring Boot project with Infinispan in-memory data grid. Used as embedded cache for local development, remote cache for _"production"_.
 
 _**Warning:** Demo project. Not intended to use in production!_
 
