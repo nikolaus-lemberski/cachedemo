@@ -8,7 +8,7 @@ _**Warning:** Demo project. Not intended to use in production!_
 
 We're using Infinispan as simple **read-through cache** here. The endpoint `/tasks` lists all the tasks. The endpoint `/tasks/<id>` simulates slow loading from database. After the first call, the result is in cache and subsequent responses are returned from cache (very fast).
 
-Infinispan also supports _write-through_ and _write-behind_. These are not demonstrated here.
+Infinispan also supports _write-through_ and _write-behind_. These are not demonstrated here. Marshalling is done via Java Marshaller. Json, Xml and Protobuf are also supported, but not demonstrated here.
 
 ## Usage
 
