@@ -28,12 +28,12 @@
 
 		<dependency>
 			<groupId>org.infinispan</groupId>
-			<artifactId>infinispan-spring5-embedded</artifactId>
+			<artifactId>infinispan-spring-boot-starter-embedded</artifactId>
 			<version>${version.infinispan}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.infinispan</groupId>
-			<artifactId>infinispan-spring5-remote</artifactId>
+			<artifactId>infinispan-spring-boot-starter-remote</artifactId>
 			<version>${version.infinispan}</version>
 		</dependency>
 

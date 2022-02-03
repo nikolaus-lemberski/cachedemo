@@ -23,6 +23,6 @@ infinispan:
     marshaller: org.infinispan.commons.marshall.JavaSerializationMarshaller
     statistics: true
     client-intelligence: BASIC
-    server-list: cachedemo-infinispan:11222
+    server-list: cachedemo-infinispan:11222;cachedemo-infinispan:11223
     java-serial-allowlist: com.lemberski.cachedemo.Task
     use-auth: false
