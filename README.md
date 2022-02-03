@@ -22,5 +22,6 @@ Spring Boot Actuator gives info about health and environment.
 2. Install Red Hat Data Grid operator in the namespace
 3. Create Infinispan cluster via the provided file (infinispan-cluster.yml). No authentication and no encryption here - demo use only!!
 4. Create the application via s2i: 
+
 `oc new-app java:11~https://github.com/nikolaus-lemberski/cachedemo.git --env=SPRING_PROFILES_ACTIVE=prod`
 5. Expose service: `oc expose svc cachedemo`
