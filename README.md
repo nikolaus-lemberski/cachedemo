@@ -1,6 +1,6 @@
 # Infinispan Cache Demo
 
-Simple Spring Boot project with Red Hat Data Grid / Infinispan, used as embedded cache for local development, remote cache for _"production"_.
+Simple Spring Boot project with Red Hat Data Grid / Infinispan, used as embedded cache for local development and remote cache for _"production"_.
 
 _**Warning:** Demo project. Not intended to use in production!_
 
