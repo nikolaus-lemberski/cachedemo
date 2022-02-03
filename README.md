@@ -20,7 +20,7 @@ Spring Boot Actuator gives info about health and environment.
 
 You can test on Red Hat Cloud Services or CodeReady Containers locally.
 
-1. Create namespace "cache-demo"
+1. Create namespace "cachedemo"
 2. Install Red Hat Data Grid operator in the namespace
 3. Create Infinispan cluster via the provided file (infinispan-cluster.yml). No authentication and no encryption here - demo use only!!
 4. Create the application via s2i:  
