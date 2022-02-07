@@ -39,9 +39,20 @@ public class TaskService {
 
     @Cacheable(key = "#id", unless = "#result==null")
     public Task get(UUID id) {
+        // simulate something slowly like loading data from db or legacy system
         sleep(10);
 
         return tasks.get(id);
+    }
+
+    @CacheEvict(key = "#id")
+    public Task update(UUID id, String description) {
+        if (tasks.containsKey(id)) {
+            Task task = new Task(id, description);
+            tasks.put(id, task);
+            return task;
+        }
+        return null;
     }
 
     @CacheEvict(key = "#id")
