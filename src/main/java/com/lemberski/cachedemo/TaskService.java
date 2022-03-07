@@ -1,17 +1,9 @@
 package com.lemberski.cachedemo;
 
-import static java.lang.String.format;
-import static java.util.stream.Collectors.toList;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.IntStream;
 
-import javax.annotation.PostConstruct;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -21,51 +13,42 @@ import org.springframework.stereotype.Service;
 @CacheConfig(cacheNames = { App.TASKS_CACHE })
 public class TaskService {
 
-    private final Map<UUID, Task> tasks = new HashMap<>();
-
-    @PostConstruct
-    public void setup() {
-        IntStream.range(0, 10).forEach(i -> {
-            Task task = new Task(format("Task %s description", ++i));
-            tasks.put(task.getId(), task);
-        });
-    }
+    @Autowired
+    private TaskRepository taskRepository;
 
     public Task create(String description) {
-        Task task = new Task(description);
-        tasks.put(task.getId(), task);
+        Task task = new Task();
+        task.setDescription(description);
+        task = taskRepository.save(task);
         return task;
     }
 
     @Cacheable(key = "#id", unless = "#result==null")
-    public Task get(UUID id) {
+    public Task get(Long id) {
         // simulate something slowly like loading data from db or legacy system
         sleep(10);
 
-        return tasks.get(id);
+        return taskRepository.findById(id).orElse(null);
     }
 
     @CacheEvict(key = "#id")
-    public Task update(UUID id, String description) {
-        if (tasks.containsKey(id)) {
-            Task task = new Task(id, description);
-            tasks.put(id, task);
-            return task;
-        }
-        return null;
+    public Task complete(Long id) {
+        Optional<Task> task = taskRepository.findById(id);
+        task.ifPresent(t -> {
+            t.setDone(true);
+            taskRepository.save(t);
+        });
+
+        return task.orElse(null);
     }
 
     @CacheEvict(key = "#id")
-    public void delete(UUID id) {
-        tasks.remove(id);
+    public void delete(Long id) {
+        taskRepository.deleteById(id);
     }
 
-    public List<Task> getAll() {
-        return tasks
-                .values()
-                .stream()
-                .sorted((t1, t2) -> t1.getDescription().compareTo(t2.getDescription()))
-                .collect(toList());
+    public Iterable<Task> getAll() {
+        return taskRepository.findAll();
     }
 
     private void sleep(int seconds) {

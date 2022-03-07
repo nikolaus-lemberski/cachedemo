@@ -1,8 +1,6 @@
 package com.lemberski.cachedemo;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -24,12 +21,12 @@ public class TaskController {
     private TaskService taskService;
 
     @GetMapping
-    public List<Task> getAll() {
+    public Iterable<Task> getAll() {
         return taskService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Task getById(@PathVariable UUID id) {
+    public Task getById(@PathVariable Long id) {
         Optional<Task> task = Optional.ofNullable(taskService.get(id));
         return task.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
@@ -39,14 +36,14 @@ public class TaskController {
         return taskService.create(description);
     }
 
-    @PutMapping("/{id}")
-    public Task update(@PathVariable UUID id, @RequestBody String description) {
-        Optional<Task> taskOptional = Optional.ofNullable(taskService.update(id, description));
+    @PutMapping("/{id}/complete")
+    public Task complete(@PathVariable Long id) {
+        Optional<Task> taskOptional = Optional.ofNullable(taskService.complete(id));
         return taskOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable UUID id) {
+    public void delete(@PathVariable Long id) {
         taskService.delete(id);
     }
 
