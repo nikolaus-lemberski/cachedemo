@@ -8,6 +8,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Service
 @CacheConfig(cacheNames = { App.TASKS_CACHE })
@@ -31,15 +32,14 @@ public class TaskService {
         return taskRepository.findById(id).orElse(null);
     }
 
-    @CacheEvict(key = "#id")
-    public Task complete(Long id) {
-        Optional<Task> task = taskRepository.findById(id);
-        task.ifPresent(t -> {
-            t.setDone(true);
-            taskRepository.save(t);
-        });
-
-        return task.orElse(null);
+    @CacheEvict(key = "#task.id")
+    public Task update(Task task) {
+        if (taskRepository.existsById(task.getId())) {
+            task = taskRepository.save(task);
+            return task;
+        }
+        
+        return null;
     }
 
     @CacheEvict(key = "#id")
