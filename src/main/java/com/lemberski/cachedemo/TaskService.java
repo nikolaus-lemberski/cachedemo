@@ -1,5 +1,6 @@
 package com.lemberski.cachedemo;
 
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +17,17 @@ public class TaskService {
     private TaskRepository taskRepository;
 
     public Task create(String description) {
-        Task task = new Task();
-        task.setDescription(description);
+        Task task = Task.builder()
+                .description(description)
+                .done(false)
+                .build();
         task = taskRepository.save(task);
         return task;
     }
 
     @Cacheable(key = "#id", unless = "#result==null")
-    public Task get(Long id) {
-        // simulate something slowly like loading data from db or legacy system
+    public Task get(UUID id) {
+        // simulate slow operation
         sleep(10);
 
         return taskRepository.findById(id).orElse(null);
@@ -36,12 +39,12 @@ public class TaskService {
             task = taskRepository.save(task);
             return task;
         }
-        
+
         return null;
     }
 
     @CacheEvict(key = "#id")
-    public void delete(Long id) {
+    public void delete(UUID id) {
         taskRepository.deleteById(id);
     }
 

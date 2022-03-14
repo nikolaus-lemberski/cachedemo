@@ -1,6 +1,8 @@
-package com.lemberski.cachedemo;
+package com.lemberski.cachedemo.config;
 
 import javax.annotation.PostConstruct;
+
+import com.lemberski.cachedemo.App;
 
 import org.infinispan.client.hotrod.RemoteCacheManager;
 import org.infinispan.commons.configuration.BasicConfiguration;
@@ -34,7 +36,7 @@ public class RemoteCache {
                 .administration()
                 .getOrCreateCache(App.TASKS_CACHE, config);
 
-        LOG.info("Infinispan cache set up done");
+        LOG.info("Infinispan cache setup done");
     }
 
 }

@@ -1,6 +1,8 @@
-package com.lemberski.cachedemo;
+package com.lemberski.cachedemo.config;
 
 import javax.annotation.PostConstruct;
+
+import com.lemberski.cachedemo.App;
 
 import org.infinispan.commons.api.CacheContainerAdmin.AdminFlag;
 import org.infinispan.configuration.cache.Configuration;
@@ -34,7 +36,7 @@ public class EmbeddedCache {
                 .withFlags(AdminFlag.VOLATILE)
                 .getOrCreateCache(App.TASKS_CACHE, config);
 
-        LOG.info("Infinispan cache set up done");
+        LOG.info("Infinispan cache setup done");
     }
 
 }

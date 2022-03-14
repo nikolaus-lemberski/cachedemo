@@ -1,6 +1,7 @@
 package com.lemberski.cachedemo;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ public class TaskController {
     }
 
     @GetMapping("/{id}")
-    public Task getById(@PathVariable Long id) {
+    public Task getById(@PathVariable UUID id) {
         Optional<Task> task = Optional.ofNullable(taskService.get(id));
         return task.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
@@ -37,15 +38,14 @@ public class TaskController {
         return taskService.create(description);
     }
 
-    @PutMapping("/{id}")
-    public Task update(@PathVariable Long id, @RequestBody Task task) {
-        task.setId(id);
+    @PutMapping
+    public Task update(@RequestBody Task task) {
         Optional<Task> taskOptional = Optional.ofNullable(taskService.update(task));
         return taskOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable UUID id) {
         taskService.delete(id);
     }
 

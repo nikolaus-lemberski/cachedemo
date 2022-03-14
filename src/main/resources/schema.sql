@@ -1,7 +1,8 @@
 drop table if exists TASKS;
 
 create table TASKS (
-  id integer identity primary key,
+  id varchar(36) not null,
   description varchar(255),
-  done boolean
+  done boolean,
+  primary key (id)
 );
