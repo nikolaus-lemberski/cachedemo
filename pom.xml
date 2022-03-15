@@ -29,6 +29,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jdbc</artifactId>
 		</dependency>
+		<!--
+		<dependency>
+			<groupId>com.lemberski.spring</groupId>
+			<artifactId>spring-data-jdbc-uuid</artifactId>
+			<version>1.0.0-Final</version>
+		</dependency>
+		-->
 
 		<dependency>
 			<groupId>com.h2database</groupId>

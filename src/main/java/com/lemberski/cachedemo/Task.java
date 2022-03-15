@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Table("TASKS")
-public class Task implements Serializable, GeneratedId {
+public class Task implements Serializable {
 
     @Id
     private UUID id;
