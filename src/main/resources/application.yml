@@ -27,9 +27,7 @@ infinispan:
     enabled: false
   remote:
     enabled: true
-    #marshaller: org.infinispan.commons.marshall.JavaSerializationMarshaller
     statistics: true
     client-intelligence: BASIC
     server-list: cachedemo-infinispan:11222
-    #java-serial-allowlist: com.lemberski.cachedemo.Task
     use-auth: false
