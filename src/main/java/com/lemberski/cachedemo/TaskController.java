@@ -28,7 +28,7 @@ public class TaskController {
     }
 
     @GetMapping("/{id}")
-    public Task getById(@PathVariable UUID id) {
+    public Task getById(@PathVariable String id) {
         Optional<Task> task = Optional.ofNullable(taskService.get(id));
         return task.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
@@ -45,7 +45,7 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable UUID id) {
+    public void delete(@PathVariable String id) {
         taskService.delete(id);
     }
 

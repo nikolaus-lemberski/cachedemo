@@ -17,16 +17,15 @@ public class TaskService {
     private TaskRepository taskRepository;
 
     public Task create(String description) {
-        Task task = Task.builder()
-                .description(description)
-                .done(false)
-                .build();
+        Task task = new Task();
+        task.setDescription(description);
+        task.setDone(false);
         task = taskRepository.save(task);
         return task;
     }
 
     @Cacheable(key = "#id", unless = "#result==null")
-    public Task get(UUID id) {
+    public Task get(String id) {
         // simulate slow operation
         sleep(10);
 
@@ -44,7 +43,7 @@ public class TaskService {
     }
 
     @CacheEvict(key = "#id")
-    public void delete(UUID id) {
+    public void delete(String id) {
         taskRepository.deleteById(id);
     }
 

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infinispan>
+    <cache-container>
+        <local-cache name="tasks" statistics="true" />
+    </cache-container>
+</infinispan>

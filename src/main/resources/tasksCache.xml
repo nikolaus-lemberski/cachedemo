@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<distributed-cache name="tasks">
+    <encoding media-type="application/x-protostream" />
+    <indexing enabled="true">
+        <indexed-entities>
+            <indexed-entity>cachedemo.Task</indexed-entity>
+        </indexed-entities>
+    </indexing>
+</distributed-cache>

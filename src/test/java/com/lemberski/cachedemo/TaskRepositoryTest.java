@@ -14,10 +14,9 @@ public class TaskRepositoryTest {
 
     @Test
     public void testCreateTask() {
-        Task task = Task.builder()
-                .description("Task description")
-                .done(false)
-                .build();
+        Task task = new Task();
+        task.setDescription("Task description");
+        task.setDone(false);
 
         task = taskRepository.save(task);
 
