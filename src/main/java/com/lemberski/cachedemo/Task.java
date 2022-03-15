@@ -27,6 +27,7 @@ public class Task {
     }
 
     @ProtoField(value = 1, required = true)
+    @ProtoDoc("@Field(index=Index.YES, analyze = Analyze.YES, store = Store.YES)")
     public String getId() {
         return id;
     }
@@ -36,6 +37,7 @@ public class Task {
     }
 
     @ProtoField(value = 2, required = true)
+    @ProtoDoc("@Field(index=Index.YES, analyze = Analyze.YES, store = Store.YES)")
     public String getDescription() {
         return description;
     }
@@ -45,6 +47,7 @@ public class Task {
     }
 
     @ProtoField(value = 3, required = true)
+    @ProtoDoc("@Field(index=Index.YES, analyze = Analyze.YES, store = Store.YES)")
     public Boolean getDone() {
         return done;
     }
