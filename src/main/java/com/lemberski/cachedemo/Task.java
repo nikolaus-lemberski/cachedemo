@@ -1,14 +1,14 @@
 package com.lemberski.cachedemo;
 
-import java.io.Serializable;
-
+import org.infinispan.protostream.annotations.ProtoDoc;
 import org.infinispan.protostream.annotations.ProtoFactory;
 import org.infinispan.protostream.annotations.ProtoField;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+@ProtoDoc("@Indexed")
 @Table("TASKS")
-public class Task implements Serializable {
+public class Task {
 
     @Id
     private String id;
