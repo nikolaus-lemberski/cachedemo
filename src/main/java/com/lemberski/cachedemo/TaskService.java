@@ -1,6 +1,5 @@
 package com.lemberski.cachedemo;
 
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
